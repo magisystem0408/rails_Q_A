@@ -1,0 +1,31 @@
+<h1>質問</h1>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <table class="table table-striped">
+      <thead class="thead-light">
+      <tr>
+        <th>ID</th>
+        <th>タイトル</th>
+        <th>メニュー</th>
+        <th>オプション</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @questions.each do |question| %>
+        <tr>
+          <td><%= question.id %></td>
+          <td><%= link_to question.title,question_path(question) %></td>
+          <td>[<%=link_to '編集する',edit_question_path(question) %>]</td>
+          <td>[<%=link_to '削除する',question_path(question),method: :delete,data:{confirm: '消していいですか？'} %>]</td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div>
+      <%= link_to '新しい質問を作る',new_question_path %>
+    </div>
+  </div>
+</div>

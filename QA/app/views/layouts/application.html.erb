@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>QA</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+  </head>
+
+  <body>
+  <div class="container">
+    <% if flash[:notice] %>
+    <p class="text-success"><%= flash[:notice]  %></p>
+    <% end %>
+    <% if flash[:alert]  %>
+    <p class="text-danger"><%= flash[:alert] %></p>
+    <%end %>
+
+
+    <%= yield %>
+  </div>
+  </body>
+</html>
