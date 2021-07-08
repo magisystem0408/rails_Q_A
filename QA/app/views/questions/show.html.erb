@@ -32,8 +32,13 @@
             </td>
 
             <td>
-                [<%= link_to '編集する',edit_question_answer_path(answer) %>]
+                [<%= link_to '編集する',edit_question_answer_path(@questions,answer) %>]
             </td>
+
+            <td>
+            <td>[<%=link_to '削除する',question_answer_path(@questions,answer),method: :delete,data:{confirm: '消していいですか？'} %>]</td>
+            </td>
+
 
           </tr>
           <%end %>
@@ -44,7 +49,24 @@
       </table>
     </div>
 
-      <%=render 'answer' %>
+    <%=form_with model: [@questions,@answer],local: true do |f| %>
+
+      <%=f.hidden_field :question_id,{value: @questions.id} %>
+      <div class="form-group">
+        <label for="">名前</label>
+        <%=f.text_field :name,class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <label for="">コンテンツ</label>
+        <%=f.text_area :content,class: 'form-control' %>
+      </div>
+
+      <div class="text-center">
+        <%= f.submit "Post",class: 'btn btn-primary'%>
+      </div>
+
+    <%end %>
 
       <div>
       <%= link_to 'ホームへ戻る',root_path %>

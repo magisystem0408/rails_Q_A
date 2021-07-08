@@ -1,10 +1,13 @@
 class QuestionsController < ApplicationController
+
+  before_action :set_question, only:[:show,:edit,:update,:destroy]
+
   def index
     @questions=Question.all
   end
 
   def show
-    @questions =Question.find(params[:id])
+    # @questions =Question.find(params[:id])
     # 新しいやつ作成
     @answer =Answer.new
   end
@@ -26,12 +29,12 @@ class QuestionsController < ApplicationController
   def edit
 
     # idの指定だけで見つけられる
-    @questions =Question.find(params[:id])
+    # @questions =Question.find(params[:id])
   end
 
   def update
 
-    @questions =Question.find(params[:id])
+    # @questions =Question.find(params[:id])
     if @questions.update(question_params)
       redirect_to root_path,notice:'Success!'
     else
@@ -45,6 +48,12 @@ class QuestionsController < ApplicationController
     @questions =Question.find(params[:id])
     @questions.destroy
     redirect_to root_path,notice:'Success!'
+  end
+
+
+  private
+  def set_question
+    @questions =Question.find(params[:id])
   end
 
   private
